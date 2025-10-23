@@ -6,7 +6,7 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 10:22:33 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/23 15:38:26 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/23 20:52:45 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,3 @@ int	parse_map(t_game *game)
 		return (map_error("Map file empty\n"));
 	return (0);
 }
-

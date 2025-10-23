@@ -6,7 +6,7 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:25:13 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/22 10:38:20 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/23 20:40:49 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define KEY_DOWN	65364
 # define KEY_LEFT	65361
 # define KEY_RIGHT	65363
-# define RETURN		65293
 
 typedef struct s_game
 {

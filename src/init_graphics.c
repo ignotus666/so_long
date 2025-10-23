@@ -6,7 +6,7 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 21:42:41 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/23 17:52:50 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/19 17:20:29 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ static int	init_window(t_game *game)
 			game->rows * 32, "so_long");
 	if (!game->win)
 		return (1);
-	return (0);
 }
 
 int	init_graphics(t_game *game)
 {
-	if (init_window(game))
-		return (1);
+	init_window(game);
 	game->img_win_mess = mlx_xpm_file_to_image(game->mlx,
 			"sprites/win_mess.xpm", &game->img_win_w, &game->img_win_h);
 	game->img_wall = mlx_xpm_file_to_image(game->mlx,
