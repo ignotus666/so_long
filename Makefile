@@ -1,20 +1,8 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/19 09:35:28 by dhanlon           #+#    #+#              #
-#    Updated: 2025/10/22 10:45:03 by dhanlon          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = so_long
+MLX_DIR = ./minilibx-linux
 LIBFT_DIR = ./libs/libft
 
-CFLAGS = -Wall -Werror -Wextra -I$(LIBFT_DIR)
-LDFLAGS = -lmlx -lXext -lX11 -lm -L$(LIBFT_DIR) -lft
+CFLAGS = -g -I$(MLX_DIR) -I$(LIBFT_DIR)
+LDFLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -L$(LIBFT_DIR) -lft
 
 SRC = src/init_graphics.c \
 	  src/so_long.c \
@@ -24,33 +12,31 @@ SRC = src/init_graphics.c \
 	  src/map_solve.c \
 	  src/map_elements.c \
 	  src/draw_game.c \
-	  src/free_map.c \
+	  src/free_memory.c \
 	  src/events.c
 OBJ = $(SRC:.c=.o)
+TARGET = so_long
 
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
-CC = gcc
-RM = rm -f
-
-%.o: %.c
-		$(CC) $(CFLAGS) -c $< -o $@
+all: $(LIBFT_A) $(TARGET)
 
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(NAME): $(OBJ)
+$(TARGET): $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-all: $(LIBFT_A) $(NAME)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		$(RM) $(OBJ)
-		$(MAKE) -C $(LIBFT_DIR) clean
+	rm -f $(OBJ)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-		$(RM) $(NAME)
-		$(MAKE) -C $(LIBFT_DIR) fclean
+	rm -f $(TARGET)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
