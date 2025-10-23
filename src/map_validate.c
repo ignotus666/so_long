@@ -6,7 +6,7 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:33:26 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/20 08:06:40 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/23 13:11:26 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	map_error(const char *msg)
 int	validate_map(t_game *game)
 {
 	if (parse_map(game))
-		return (map_error("parse_map failed\n"));
+		return (1);
 	if (load_map(game))
-		return (map_error("load_map failed\n"));
+		return (1);
 	if (!is_valid_map_chars(game))
 		return (map_error("invalid character in map\n"));
 	if (!is_enclosed_by_walls(game))

@@ -6,13 +6,13 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 10:22:33 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/20 19:18:55 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:38:26 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	handle_error(t_parse *p)
+static int	free_line(t_parse *p)
 {
 	free(p->line);
 	close(p->fd);
@@ -27,14 +27,14 @@ static int	check_line(t_parse *p, t_game *game)
 	if (p->len == 0)
 	{
 		map_error("Empty line found\n");
-		return (handle_error(p));
+		return (free_line(p));
 	}
 	if (game->cols == -1)
 		game->cols = p->len;
 	else if (p->len != game->cols)
 	{
 		map_error("Non-rectangular line found\n");
-		return (handle_error(p));
+		return (free_line(p));
 	}
 	game->rows++;
 	free(p->line);
@@ -47,7 +47,7 @@ int	parse_map(t_game *game)
 
 	p.fd = open(game->map_path, O_RDONLY);
 	if (p.fd < 0)
-		return (1);
+		return (map_error("Could not open map file\n"));
 	game->rows = 0;
 	game->cols = -1;
 	p.line = get_next_line(p.fd);
@@ -59,26 +59,7 @@ int	parse_map(t_game *game)
 	}
 	close(p.fd);
 	if (game->rows == 0)
-		return (1);
+		return (map_error("Map file empty\n"));
 	return (0);
 }
 
-void	count_collectibles(t_game *game)
-{
-	int	x;
-	int	y;
-
-	game->collect_count = 0;
-	y = 0;
-	while (y < game->rows)
-	{
-		x = 0;
-		while (x < game->cols)
-		{
-			if (game->map[y][x] == 'C')
-				game->collect_count++;
-			x++;
-		}
-		y++;
-	}
-}

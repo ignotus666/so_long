@@ -6,7 +6,7 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:40:42 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/20 08:12:00 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/23 15:37:36 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	load_map(t_game *game)
 
 	game->map = malloc(sizeof(char *) * game->rows);
 	if (!game->map)
-		return (1);
+		return (map_error("Could not load map into memory\n"));
 	fd = open(game->map_path, O_RDONLY);
 	if (fd < 0)
-		return (1);
+		return (map_error("Could not open map file\n"));
 	i = 0;
 	while (i < game->rows)
 	{
@@ -31,7 +31,7 @@ int	load_map(t_game *game)
 		if (!line)
 		{
 			close(fd);
-			return (1);
+			return (map_error("Map file empty\n"));
 		}
 		game->map[i] = line;
 		i++;
@@ -40,25 +40,3 @@ int	load_map(t_game *game)
 	return (0);
 }
 
-void	find_player_position(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < game->rows)
-	{
-		x = 0;
-		while (x < game->cols)
-		{
-			if (game->map[y][x] == 'P')
-			{
-				game->player_x = x;
-				game->player_y = y;
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}

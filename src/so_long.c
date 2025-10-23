@@ -6,7 +6,7 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:23:41 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/22 10:46:04 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/23 13:59:01 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,21 @@
 static int	is_valid_map_arg(int argc, char **argv, t_game *game)
 {
 	int			len;
+	const char	*filename;
 
 	if (argc != 2)
 		return (map_error("Wrong number of arguments\n"));
 	len = ft_strlen(game->map_path);
-	if (len < 5 || ft_strncmp(game->map_path + len - 4, ".ber", 4) != 0)
-		return (map_error("Error: the map file must have a .ber extension\n"));
+	filename = game->map_path;
+	while (*filename)
+		filename++;
+	while (filename > game->map_path && *(filename - 1) != '/')
+		filename--;
+	len = ft_strlen(filename);
+	if (len < 5)
+		return (map_error("The map file must have a valid name\n"));
+	if (ft_strncmp(filename + len - 4, ".ber", 4) != 0)
+		return (map_error("The map file must have a .ber extension\n"));
 	return (0);
 }
 

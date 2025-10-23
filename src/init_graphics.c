@@ -21,11 +21,13 @@ static int	init_window(t_game *game)
 			game->rows * 32, "so_long");
 	if (!game->win)
 		return (1);
+	return (0);
 }
 
 int	init_graphics(t_game *game)
 {
-	init_window(game);
+	if (init_window(game));
+		return (1);
 	game->img_win_mess = mlx_xpm_file_to_image(game->mlx,
 			"sprites/win_mess.xpm", &game->img_win_w, &game->img_win_h);
 	game->img_wall = mlx_xpm_file_to_image(game->mlx,
