@@ -6,7 +6,7 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:39:11 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/24 13:54:14 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/24 14:29:57 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	draw_map(t_game *game)
 {
 	int		x;
 	int		y;
-	void	*img;
 
 	y = 0;
 	while (y < game->rows)
