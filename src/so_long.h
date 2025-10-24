@@ -6,7 +6,7 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:25:13 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/23 20:40:49 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/24 13:59:45 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@
 
 typedef struct s_game
 {
+	void		*mlx;
+	void		*win;
 	char		**map;
 	const char	*map_path;
 	int			rows;
 	int			cols;
-	void		*mlx;
-	void		*win;
+	int			player_x;
+	int			player_y;
+	int			player_dir;
 	void		*img_wall;
 	void		*img_player;
-	int			player_dir;
 	void		*img_player_right;
 	void		*img_player_left;
 	void		*img_collect;
@@ -50,10 +52,8 @@ typedef struct s_game
 	int			img_h;
 	int			img_win_w;
 	int			img_win_h;
-	int			player_x;
-	int			player_y;
-	int			collect_count;
 	int			win_flag;
+	int			collect_count;
 	int			move_count;
 }	t_game;
 
