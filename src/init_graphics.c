@@ -6,7 +6,7 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 21:42:41 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/24 13:54:53 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/26 07:48:32 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	init_window(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (1);
-	game->win = mlx_new_window(game->mlx, game->cols * 32,
-			game->rows * 32, "so_long");
+	game->win = mlx_new_window(game->mlx, game->cols * 60,
+			game->rows * 60, "so_long");
 	if (!game->win)
 		return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: dhanlon <dhanlon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:39:11 by dhanlon           #+#    #+#             */
-/*   Updated: 2025/10/24 14:29:57 by dhanlon          ###   ########.fr       */
+/*   Updated: 2025/10/26 07:48:05 by dhanlon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	draw_tile(t_game *game, int x, int y)
 		img = game->img_collect;
 	else if (game->map[y][x] == 'E')
 		img = game->img_exit;
-	mlx_put_image_to_window(game->mlx, game->win, img, x * 32, y * 32);
+	mlx_put_image_to_window(game->mlx, game->win, img,
+		x * game->img_w, y * game->img_h);
 }
 
 void	draw_map(t_game *game)
@@ -52,6 +53,6 @@ void	draw_map(t_game *game)
 	if (game->win_flag)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->img_win_mess,
-			(game->cols * 32) / 2 - (game->img_win_w / 2),
-			(game->rows * 32) / 2 - (game->img_win_h / 2));
+			(game->cols * game->img_w) / 2 - (game->img_win_w / 2),
+			(game->rows * game->img_h) / 2 - (game->img_win_h / 2));
 }
